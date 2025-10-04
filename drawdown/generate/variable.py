@@ -21,7 +21,8 @@ class Variable:
         self._population = []
         # weights prefer the central value
         # the middle value should be 0.5
-        # calculate others spreading out lower & higher
+        # the extremes are 0.1
+        # calculate others spreading out lower & higher towards the min & max
         self._weights = []
 
         item = min
@@ -35,8 +36,8 @@ class Variable:
         self._population.append(max)
         self._weights.append(1/(period*2))
 
-        print(f"_population {self._population}")
-        print(f"_weights {self._weights}")
+        # print(f"_population {self._population}")
+        # print(f"_weights {self._weights}")
 
     def next(self) -> float:
         return random.choices(
