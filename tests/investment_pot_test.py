@@ -1,13 +1,13 @@
 import unittest
 
-from drawdown.source.pension_pot import PensionPot
+from drawdown.source.investment_pot import InvestmentPot
 
-class PensionPotTest(unittest.TestCase):
+class InvestmentPotTest(unittest.TestCase):
 
     def test_withdraw_returns_deducted_value(self) -> None:
 
         amount = 500000
-        pot = PensionPot(value=amount)
+        pot = InvestmentPot(value=amount)
 
         deduction = 30000
         result = pot.withdraw(amount=deduction)
@@ -20,7 +20,7 @@ class PensionPotTest(unittest.TestCase):
     def test_cannot_withdraw_more_than_total(self) -> None:
 
         amount = 10000
-        pot = PensionPot(value=amount)
+        pot = InvestmentPot(value=amount)
 
         deduction = 30000
         result = pot.withdraw(amount=deduction)
@@ -32,7 +32,7 @@ class PensionPotTest(unittest.TestCase):
 
     def test_increase(self) -> None:
         amount = 10000
-        pot = PensionPot(value=amount)
+        pot = InvestmentPot(value=amount)
 
         percent = 0.1
         result = pot.increase(percent=percent)

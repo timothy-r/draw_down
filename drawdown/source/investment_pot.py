@@ -1,6 +1,6 @@
 from drawdown.source.fund_source import FundSource
 
-class PensionPot(FundSource):
+class InvestmentPot(FundSource):
 
     def __init__(self, value:float) -> None:
         self._value = value
