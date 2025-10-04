@@ -33,11 +33,14 @@ class Simulator:
             # set up a record object
             # set initial values of sources - start of year
                 # including state pension amount - using age
+
             # update target based on last period's returns
+
             # using a strategy calculate amounts to withdraw to achive target
             # withdraw from sources - start of year
             # update sources - end of year
-            # record all values
+
+            # record all values and return tme
         result = {}
         for i in range(0, self._period):
 
@@ -52,6 +55,7 @@ class Simulator:
 
     def _run_year(self, year, age) -> ReportYear:
 
+        # initialise with values for start of the year
         report = ReportYear(year=year, age=age)
 
         for k, v in self._sources.items():
