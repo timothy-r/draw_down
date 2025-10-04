@@ -1,5 +1,7 @@
 import random
-class Variable:
+from drawdown.generate.sequence import Sequence
+
+class VariableSequence(Sequence):
     """
         produces a variable value that fluctuates beween min & max
         and produces an average value over a specified period
@@ -45,5 +47,3 @@ class Variable:
             weights=self._weights,
             k=1
         )[0]
-
-        return random.uniform(self._min, self._max)
