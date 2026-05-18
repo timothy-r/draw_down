@@ -2,11 +2,33 @@ from drawdown.source.fund_source import FundSource
 from drawdown.source.money import Money
 class InvestmentPot(FundSource):
 
-    def __init__(self, value:Money) -> None:
+    def __init__(
+        self,
+        value:Money,
+        name:str,
+        type:str,
+        risk:int
+    ) -> None:
+
         self._value = value
+        self._name = name
+        self._type = type
+        self._risk = risk
 
     def total(self) -> Money:
         return self._value
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @property
+    def type(self) -> str:
+        return self._type
+
+    @property
+    def risk(self) -> str:
+        return self._risk
 
     def has_funds(self, amount:Money) -> bool:
         if amount.currency != self._value.currency:

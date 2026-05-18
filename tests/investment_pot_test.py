@@ -6,9 +6,13 @@ class InvestmentPotTest(unittest.TestCase):
 
     def test_withdraw_returns_deducted_value(self) -> None:
 
+        name = 'pension'
+        type = ''
+        risk = 4
+
         amount = Money(value=500000, currency='£')
 
-        pot = InvestmentPot(value=amount)
+        pot = InvestmentPot(value=amount, name=name, risk=risk, type=type)
 
         deduction = Money(value=30000, currency='£')
 
@@ -22,9 +26,14 @@ class InvestmentPotTest(unittest.TestCase):
 
     def test_cannot_withdraw_more_than_total(self) -> None:
 
+        name = 'pension'
+        type = ''
+        risk = 4
+
         amount = Money(value=10000, currency='£')
 
-        pot = InvestmentPot(value=amount)
+        pot = InvestmentPot(value=amount, name=name, risk=risk, type=type)
+
 
         deduction = Money(value=30000, currency='£')
 
@@ -37,9 +46,13 @@ class InvestmentPotTest(unittest.TestCase):
 
     def test_increase(self) -> None:
 
+        name = 'pension'
+        type = ''
+        risk = 4
+
         amount = Money(value=10000, currency='£')
 
-        pot = InvestmentPot(value=amount)
+        pot = InvestmentPot(value=amount, name=name, risk=risk, type=type)
 
         percent = 0.1
         result = pot.increase(percent=percent)
