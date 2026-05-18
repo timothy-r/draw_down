@@ -10,7 +10,19 @@ class Money:
     def total(self) -> int:
         return self._value
 
+    @property
+    def currency(self) -> str:
+        return self._currency
+
+    def equals(self, other:'Money') -> bool:
+
+        return self._value == other.total and self._currency == other.currency
+
     def subtract(self, other:'Money') -> 'Money':
+
+        if other.currency != self._currency:
+            raise ValueError("Invalid currency")
+
         if other.total > self._value:
             new_amount = 0
         else:
@@ -24,7 +36,8 @@ class Money:
             amount = 100_000_00
             value = 1.045
         """
-        new_amount = int(round(self._value*value,0))
+
+        new_amount = int(round(self._value * value, 0))
         return Money(new_amount, self._currency)
 
     def __str__(self):

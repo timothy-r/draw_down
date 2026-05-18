@@ -1,13 +1,14 @@
 import abc
 
+from drawdown.source.money import Money
 class FundSource(abc.ABC):
 
     @abc.abstractmethod
-    def total(self)-> float:
+    def total(self)-> Money:
         pass
 
     @abc.abstractmethod
-    def withdraw(self, amount:float) -> float:
+    def withdraw(self, amount:Money) -> Money:
         """
             returns the amount withdrawn
             may not be requested amount if funds are insuficient
@@ -15,5 +16,5 @@ class FundSource(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def increase(self, percent:float) -> float:
+    def increase(self, percent:float) -> Money:
         pass

@@ -8,16 +8,31 @@ class InvestmentPot(FundSource):
     def total(self) -> Money:
         return self._value
 
-    def withdraw(self, amount:Money) -> Money:
+    def has_funds(self, amount:Money) -> bool:
+        if amount.currency != self._value.currency:
+            raise ValueError(f"Invalid currency. Pot currency = {self.value.currency}. Other currency - {amount.currency}")
 
-        if amount > self._value:
-            amount = self._value
-            self._value = 0.0
+        if amount.total<= self._value.total:
+            return True
         else:
-            self._value -= amount
+            return False
 
-        return amount
+    def withdraw(self, amount:Money) -> Money:
+        if amount.currency != self._value.currency:
+            raise ValueError(f"Invalid currency. Pot currency = {self.value.currency}. Other currency - {amount.currency}")
 
-    def increase(self, percent:float) -> float:
-        self._value *= percent
+        if amount.total > self._value.total:
+            withdrawn = Money(value=self._value.total, currency=self._value.currency)
+
+            self._value = Money(0, currency=self._value.currency)
+
+        else:
+            withdrawn = Money(value=amount.total, currency=self._value.currency)
+
+            self._value = self._value.subtract(other=amount)
+
+        return withdrawn
+
+    def increase(self, percent:float) -> Money:
+        self._value = self._value.multiply(value=percent)
         return self._value
