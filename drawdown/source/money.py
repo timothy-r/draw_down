@@ -1,6 +1,7 @@
 class Money:
     """
         represents an amount of money
+        what about currency?
     """
     def __init__(self, amount:int):
         self._amount = amount
@@ -15,3 +16,6 @@ class Money:
         """
         self._amount = int(round(self._amount*value,0))
         return self._amount
+
+    # def __str__(self):
+    #     return a string version
