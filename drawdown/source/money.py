@@ -6,14 +6,15 @@ class Money:
         self._value = value
         self._currency = currency
 
+    @property
     def total(self) -> int:
         return self._value
 
     def subtract(self, other:'Money') -> 'Money':
-        if other.total() > self._value:
+        if other.total > self._value:
             new_amount = 0
         else:
-            new_amount = self._value - other.total()
+            new_amount = self._value - other.total
 
         return Money(new_amount, self._currency)
 

@@ -14,7 +14,7 @@ class MoneyTest(unittest.TestCase):
         # print(result)
         self.assertIsInstance(result, Money)
 
-        self.assertEqual(result.total(), round(amount * percent, 0))
+        self.assertEqual(result.total, round(amount * percent, 0))
 
     def test_subtract(self) -> None:
         amount = 1000
@@ -26,7 +26,7 @@ class MoneyTest(unittest.TestCase):
         result = m.subtract(other=s)
 
         self.assertIsInstance(result, Money)
-        self.assertEqual(amount-sub, result.total())
+        self.assertEqual(amount-sub, result.total)
 
     def test_subtract_does_not_create_negative_values(self) -> None:
         amount = 1000
@@ -38,7 +38,7 @@ class MoneyTest(unittest.TestCase):
         result = m.subtract(other=s)
 
         self.assertIsInstance(result, Money)
-        self.assertEqual(0, result.total())
+        self.assertEqual(0, result.total)
 
     def test_to_string(self) -> None:
 

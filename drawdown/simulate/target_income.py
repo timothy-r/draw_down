@@ -1,14 +1,15 @@
+from drawdown.source.money import Money
 class TargetIncome:
 
     TAX_FREE = 12750
 
-    def __init__(self, target:float):
+    def __init__(self, target:Money):
         self._original_target = self._current_target = target
 
-    def current(self) -> float:
+    def current(self) -> Money:
         return self._current_target
 
-    def original(self) -> float:
+    def original(self) -> Money:
         return self._original_target
 
     def current_with_tax(self) -> float:
