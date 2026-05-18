@@ -5,6 +5,8 @@ from drawdown.strategy.strategy import Strategy
 from drawdown.simulate.report_year import ReportYear
 from drawdown.source.investment_pot import InvestmentPot
 from drawdown.source.money import Money
+from drawdown.generate.fixed_sequence import FixedSequence
+
 class SimulatorTest(unittest.TestCase):
 
     def test_produces_reports(self) -> None:
@@ -14,6 +16,8 @@ class SimulatorTest(unittest.TestCase):
         period = 30
         currency = '£'
         target = TargetIncome(target=36000)
+        interest = FixedSequence(0.05)
+
 
         isa_value = Money(value=60000, currency=currency)
 
@@ -23,11 +27,12 @@ class SimulatorTest(unittest.TestCase):
         pension_global_equity_value = Money(value=450000, currency=currency)
 
         sources = {
+
             'isa': InvestmentPot(
-                    value=isa_value, name='cash_isa', type='', risk=0
+                    value=isa_value, name='cash_isa', type='', risk=0, interest_rate=interest
                     ),
             'pension_cash_fund': InvestmentPot(
-                value=pension_cash_fund_value, name='pension_cash_fund', type='', risk=1)
+                value=pension_cash_fund_value, name='pension_cash_fund', type='', risk=1, interest_rate=interest)
 
             }
 

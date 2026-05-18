@@ -2,6 +2,7 @@ import unittest
 
 from drawdown.source.investment_pot import InvestmentPot
 from drawdown.source.money import Money
+from drawdown.generate.fixed_sequence import FixedSequence
 class InvestmentPotTest(unittest.TestCase):
 
     def test_withdraw_returns_deducted_value(self) -> None:
@@ -12,7 +13,9 @@ class InvestmentPotTest(unittest.TestCase):
 
         amount = Money(value=500000, currency='£')
 
-        pot = InvestmentPot(value=amount, name=name, risk=risk, type=type)
+        interest = FixedSequence(0.05)
+
+        pot = InvestmentPot(value=amount, name=name, risk=risk, type=type, interest_rate=interest)
 
         deduction = Money(value=30000, currency='£')
 
@@ -32,7 +35,9 @@ class InvestmentPotTest(unittest.TestCase):
 
         amount = Money(value=10000, currency='£')
 
-        pot = InvestmentPot(value=amount, name=name, risk=risk, type=type)
+        interest = FixedSequence(0.05)
+
+        pot = InvestmentPot(value=amount, name=name, risk=risk, type=type, interest_rate=interest)
 
 
         deduction = Money(value=30000, currency='£')
@@ -51,8 +56,9 @@ class InvestmentPotTest(unittest.TestCase):
         risk = 4
 
         amount = Money(value=10000, currency='£')
+        interest = FixedSequence(0.05)
 
-        pot = InvestmentPot(value=amount, name=name, risk=risk, type=type)
+        pot = InvestmentPot(value=amount, name=name, risk=risk, type=type,interest_rate=interest)
 
         percent = 0.1
         result = pot.increase(percent=percent)

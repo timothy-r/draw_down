@@ -1,5 +1,6 @@
 from drawdown.source.fund_source import FundSource
 from drawdown.source.money import Money
+from drawdown.generate.sequence import Sequence
 class InvestmentPot(FundSource):
 
     def __init__(
@@ -7,13 +8,16 @@ class InvestmentPot(FundSource):
         value:Money,
         name:str,
         type:str,
-        risk:int
+        risk:int,
+        interest_rate: Sequence
+
     ) -> None:
 
         self._value = value
         self._name = name
         self._type = type
         self._risk = risk
+        self._interest_rate = interest_rate
 
     def total(self) -> Money:
         return self._value
@@ -54,6 +58,10 @@ class InvestmentPot(FundSource):
             self._value = self._value.subtract(other=amount)
 
         return withdrawn
+
+    def apply_interest(self) -> Money:
+
+        return self.increase(self._interest_rate.next())
 
     def increase(self, percent:float) -> Money:
         self._value = self._value.multiply(value=percent)
