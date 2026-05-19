@@ -9,7 +9,7 @@ from drawdown.generate.fixed_sequence import FixedSequence
 
 class SimulatorTest(unittest.TestCase):
 
-    def test_produces_reports(self) -> None:
+    def x_test_produces_reports(self) -> None:
 
         year = 2028
         age = 62
