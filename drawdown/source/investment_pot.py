@@ -66,3 +66,17 @@ class InvestmentPot(FundSource):
     def increase(self, percent:float) -> Money:
         self._value = self._value.multiply(value=percent)
         return self._value
+
+    def add(self, amount:Money) -> bool:
+        if amount.currency != self._value.currency:
+            raise ValueError(f"Invalid currency. Pot currency = {self.value.currency}. Other currency - {amount.currency}")
+
+        self._value = self._value.add(other=amount)
+        return True
+
+    def transfer(self, amount:Money, to:FundSource) -> bool:
+        if amount.currency != self._value.currency:
+            raise ValueError(f"Invalid currency. Pot currency = {self.value.currency}. Other currency - {amount.currency}")
+
+        self._value = self._value.subtract(other=amount)
+        return to.add(amount=amount)

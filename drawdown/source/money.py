@@ -30,6 +30,12 @@ class Money:
 
         return Money(new_amount, self._currency)
 
+    def add(self, other:'Money') -> 'Money':
+        if other.currency != self._currency:
+            raise ValueError("Invalid currency")
+
+        return Money(self._value + other.total, self._currency)
+
 
     def multiply(self, value:float) -> int:
         """

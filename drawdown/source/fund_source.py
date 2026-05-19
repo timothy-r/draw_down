@@ -18,3 +18,11 @@ class FundSource(abc.ABC):
     @abc.abstractmethod
     def increase(self, percent:float) -> Money:
         pass
+
+    @abc.abstractmethod
+    def transfer(self, amount:Money, to:'FundSource'):
+        """
+            transfer amount to the parameter FundSource
+            fail if amount > current value
+        """
+        pass

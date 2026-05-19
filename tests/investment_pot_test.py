@@ -65,3 +65,30 @@ class InvestmentPotTest(unittest.TestCase):
 
         self.assertEqual(result.total, amount.total * percent)
 
+    def test_transfer(self) -> None:
+
+        name = 'pension'
+        type = ''
+        risk = 4
+
+        pot_a_amount = Money(value=500000, currency='£')
+        interest = FixedSequence(0.1)
+
+        pot_a = InvestmentPot(value=pot_a_amount, name=name, risk=risk, type=type,interest_rate=interest)
+
+        name = 'pension'
+        type = ''
+        risk = 1
+
+        pot_b_amount = Money(value=100000, currency='£')
+        interest = FixedSequence(0.03)
+
+        pot_b = InvestmentPot(value=pot_b_amount, name=name, risk=risk, type=type,interest_rate=interest)
+
+        transfer = Money(value=10000, currency='£')
+        success = pot_a.transfer(amount=transfer, to=pot_b)
+
+        self.assertTrue(success)
+        self.assertEqual(pot_a.total().total, pot_a_amount.subtract(other=transfer).total)
+
+        self.assertEqual(pot_b.total().total, pot_b_amount.add(other=transfer).total)
