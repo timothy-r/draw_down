@@ -1,3 +1,4 @@
+
 class Money:
     """
         represents an amount of money

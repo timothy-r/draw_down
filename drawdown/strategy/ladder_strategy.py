@@ -15,7 +15,6 @@ class LadderStrategy(Strategy):
             return the drawdown amount
         """
 
-        # state_pension = Money(value=0, currency='£')
         pension = self._state_pension.get(year=year)
 
         amount = self._draw_down(pension=pension)
@@ -28,6 +27,7 @@ class LadderStrategy(Strategy):
 
     def _draw_down(self, pension:Money) -> Money:
         """
+            if pension is 0 make sure to withdraw tax free allowance from pension
             try to draw from cash funds, isas
             fall back to other funds
         """
