@@ -78,5 +78,8 @@ class InvestmentPot(FundSource):
         if amount.currency != self._value.currency:
             raise ValueError(f"Invalid currency. Pot currency = {self.value.currency}. Other currency - {amount.currency}")
 
+        if amount.total > self._value.total:
+            return False
+
         self._value = self._value.subtract(other=amount)
         return to.add(amount=amount)
